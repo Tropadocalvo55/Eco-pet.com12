@@ -1,76 +1,663 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eco-Pet - Limpeza dos Mares e Reciclagem de Plásticos</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Site de Vendas</title>
+    <!-- Adicionando Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Adicionando Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Adicionando SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        .hero {
-            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyzjjL1_uiClnUJNpc_8V_PcC1Hj9sxYeAEVFKqCwzVHPoIOxuVVsZM04&s=10');
-            background-size: cover;
-            background-position: center;
+        /* Seus estilos CSS aqui */
+    </style>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Vendas</title>
+    <!-- Adicionando Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Adicionando Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Adicionando SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0B0C10; /* Azul marinho */
             color: #fff;
+        }
+
+        header {
+            background-color: #1F2833; /* Azul marinho mais escuro */
+            padding: 20px;
             text-align: center;
-            padding: 100px 0;
-            min-height: 400px; /* Defina a altura mínima desejada */
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .product {
+            border: 1px solid #45A29E; /* Turquesa escuro */
+            border-radius: 5px;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            background-color: #1F2833; /* Azul marinho mais escuro */
+        }
+
+        footer {
+            background-color: #1F2833; /* Azul marinho mais escuro */
+            padding: 10px;
+            text-align: center;
+        }
+
+        .news {
+            background-color: #0B0C10; /* Azul marinho mais escuro */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .cart {
+            border: 1px solid #45A29E; /* Turquesa escuro */
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1F2833; /* Azul marinho mais escuro */
+            z-index: 999;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px; /* Largura máxima do carrinho */
+            width: 100%;
+        }
+
+        .cart-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #45A29E; /* Turquesa escuro */
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .cart-icon:hover {
+            background-color: #66FCF1; /* Turquesa mais clara */
+        }
+
+        .cart-items {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .cart-items li {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #45A29E; /* Turquesa escuro */
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item-name {
+            flex-grow: 1;
+        }
+
+        .send-button {
+            background-color: #45A29E; /* Turquesa escuro */
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .send-button:hover {
+            background-color: #66FCF1; /* Turquesa mais clara */
+        }
+
+        .close-button {
+            background-color: #F25F5C; /* Vermelho coral */
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .close-button:hover {
+            background-color: #FF7A70; /* Vermelho coral mais claro */
+        }
+
+        /* Estilos para o botão Abrir */
+        .open-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        /* Estilos para a barra lateral */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background-color: #1F2833; /* Azul marinho mais escuro */
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 8px 8px;
+            text-decoration: none;
+            font-size: 22px;
+            color: #66FCF1; /* Turquesa mais clara */
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            color: #fff;
+            background-color: #45A29E; /* Turquesa escuro */
+        }
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+            color: #66FCF1; /* Turquesa mais clara */
+        }
+
+        .sidebar .close-btn:hover {
+            color: #fff;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidebar {padding-top: 15px;}
+            .sidebar a {font-size: 18px;}
         }
     </style>
 </head>
 <body>
+    <!-- Botão para abrir o sidebar -->
+<button class="btn btn-dark open-btn" onclick="openNav()">☰ </button>
 
-<header>
-             <h1>EcoPet</h1>
-    <nav>
-        <ul>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#contato">Contato</a></li>
-        </ul>
-    </nav>
-</header>
+<!-- Paralaxe -->
+<section id="home" class="parallax">
+  <div class="container">
+    
+</section>
 
-<section class="hero">
-    <div class="hero-content">
-        <h2></h2>
-        <p>veja nossa apresentação abaixo para saber mais sobre nossos esforços para um planeta mais limpo e sustentável.</p>
-        <a href="https://files.fm/f/uz35wh9khb" target="_blank"><button>Acesse Agora</button></a>
+<!-- Barra lateral -->
+<nav class="sidebar" id="mySidebar">
+  <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">×</a>
+  <ul>
+    <li><a href="#home">inicio</a></li>
+    <li><a href="#produtos">Produtos</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    
+  </ul>
+</nav>
+    <header>
+        <h1>𝐋𝐙𝐌𝐒𝐓𝐎𝐑𝐄</h1>
+    </header>
+    
+  </p>
+</section>
+<section id="produtos">
+ <h1>PRODUTOS</h1>
+    </header>
+    
+  
+     <main>
+        <div class="product">
+            <img src="product1.jpg" alt="Product 1">
+            <h2>Camiseta Azul</h2>
+            <p>Camiseta azul marinho, tamanho M</p>
+            <p>Preço: R$ 50</p>
+            <button onclick="addToCart('Camiseta Azul', 50)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+            <img src="product2.jpg" alt="Product 2">
+            <h2>Calça Jeans</h2>
+            <p>Calça jeans escura, tamanho 38</p>
+            <p>Preço: R$ 80</p>
+            <button onclick="addToCart('Calça Jeans', 80)">Adicionar ao Carrinho</button>
+        </div>
+        <!-- Adicione mais produtos conforme necessário -->
+        <div class="product">
+            <img src="product3.jpg" alt="Product 3">
+            <h2>Sapato Social</h2>
+            <p>Sapato Social de couro legítimo, tamanho 42</p>
+            <p>Preço: R$ 120</p>
+            <button onclick="addToCart('Sapato Social', 120)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+            <img src="product4.jpg" alt="Product 4">
+            <h2>Relógio de Pulso</h2>
+            <p>Relógio de pulso analógico, cor prata</p>
+            <p>Preço: R$ 100</p>
+            <button onclick="addToCart('Relógio de Pulso', 100)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+        <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+       <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Óculos de Sol</h2>
+            <p>Óculos de sol estilo aviador, lentes espelhadas</p>
+            <p>Preço: R$ 70</p>
+            <button onclick="addToCart('Óculos de Sol', 70)">Adicionar ao Carrinho</button>
+        </div>
+    </main>
+</p>
+</section>
+<section id="sobre">
+    <h2>Sobre Nós</h2>
+    <p>A LZMSTORE é uma loja online dedicada a fornecer produtos de alta qualidade e última geração para clientes exigentes. Nosso compromisso é oferecer uma experiência de compra excepcional, combinando variedade, qualidade e atendimento personalizado.</p>
+    
+    <p>Nossa equipe está sempre em busca das últimas tendências em tecnologia, moda e estilo de vida para trazer para você os produtos mais inovadores do mercado. Além disso, trabalhamos com marcas reconhecidas e garantimos a autenticidade e qualidade de cada item que vendemos.</p>
+    
+    <p</p>
+</section>
+
+    <!-- Botão para abrir o carrinho -->
+    <div class="cart-icon" onclick="toggleCart()"><i class="fas fa-shopping-cart"></i></div>
+
+    <div class="cart" id="cart">
+        <h2>Carrinho de Compras</h2>
+        <ul class="cart-items" id="cartItems"></ul>
+        <p id="totalPrice"></p>
+        <button class="send-button" onclick="sendWhatsAppMessage()">Enviar Pedido via WhatsApp</button>
+        <button class="close-button" onclick="toggleCart()">Fechar Carrinho</button>
     </div>
-</section>
 
-<section id="sobre" class="content-section">
-    <h2>Sobre a EcoPet</h2>
-    <p>A EcoPet é uma empresa dedicada à limpeza dos mares e à reciclagem de plásticos. Nosso objetivo é preservar o meio ambiente e garantir um futuro sustentável para as próximas gerações.</p>
-</section>
+    <footer>
+        <p>&copy; 2024 𝐋𝐙𝐌𝐒𝐓𝐎𝐑𝐄</p>
+    </footer>
 
-<section id="servicos" class="content-section">
-    <h2>Nossos Serviços</h2>
-    <p>Oferecemos uma variedade de serviços para ajudar na limpeza dos mares e na reciclagem de plásticos, incluindo:</p>
-    <ul>
-        <li>Limpeza de praias e oceanos</li>
-        <li>Coleta seletiva de plásticos</li>
-        <li>Reciclagem de plásticos</li>
-    </ul>
-</section>
+    <script>
+        function addToCart(productName, price) {
+            Swal.fire({
+                title: 'Produto adicionado ao carrinho!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            var cartItems = document.getElementById("cartItems");
+            var listItem = document.createElement("li");
+            listItem.textContent = productName + " - Preço: R$ " + price;
+            cartItems.appendChild(listItem);
 
-<section id="contato" class="content-section">
-    <h2>Entre em Contato</h2>
-    <p>Para saber mais sobre nossos serviços ou entrar em contato conosco, utilize as informações abaixo:</p>
-    <address>
-        EcoPet<br>
-        Endereço: Av. Exemplo, 123 - Cidade Verde<br>
-        Telefone: (00) 1234-5678<br>
-        Email: contato@ecopet.com<br>
-        <p>Siga-nos no Instagram:</p>
-        <a href="https://www.instagram.com/eco_pet_life?igsh=MXB0ejJ2YTJlaHR6aQ==">@eco_pet_life</a>
-    </address>
-</section>
+            // Atualizar o preço total
+            updateTotalPrice();
+        }
 
-<script src="script.js"></script>
+        function toggleCart() {
+            var cart = document.getElementById("cart");
+            cart.style.display = cart.style.display === "block" ? "none" : "block";
+        }
 
-<footer>
-    <p>&copy; 2024 EcoPet - Todos os direitos reservados.</p>
-</footer>
+        function sendWhatsAppMessage() {
+            var cartItems = document.getElementById("cartItems").getElementsByTagName("li");
+            var totalPrice = document.getElementById("totalPrice").textContent;
+            var message = "Pedido via WhatsApp:\n";
+            for (var i = 0; i < cartItems.length; i++) {
+                message += cartItems[i].textContent + "\n";
+            }
+            message += "\nTotal: " + totalPrice;
+            var whatsappURL = "https://wa.me/?text=" + encodeURIComponent(message);
+            window.open(whatsappURL, "_blank");
+        }
 
+        function updateTotalPrice() {
+            var cartItems = document.getElementById("cartItems").getElementsByTagName("li");
+            var totalPrice = 0;
+            for (var i = 0; i < cartItems.length; i++) {
+                var itemPrice = parseFloat(cartItems[i].textContent.split("R$ ")[1]);
+                totalPrice += itemPrice;
+            }
+            if (cartItems.length > 10) {
+                totalPrice *= 0.9; // Aplica um desconto de 10% se houver mais de 10 produtos
+            }
+            document.getElementById("totalPrice").textContent = "Total: R$ " + totalPrice.toFixed(2);
+        }
+
+        // Funções para o sidebar
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+    </script>
+</body>
+</html>
+    <script>
+        function addToCart(productName, price) {
+            Swal.fire({
+                title: 'Produto adicionado ao carrinho!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            var cartItems = document.getElementById("cartItems");
+            var listItem = document.createElement("li");
+            listItem.textContent = productName + " - Preço: R$ " + price;
+            cartItems.appendChild(listItem);
+
+            // Atualizar o preço total
+            updateTotalPrice();
+        }
+
+        function toggleCart() {
+            var cart = document.getElementById("cart");
+            cart.style.display = cart.style.display === "block" ? "none" : "block";
+        }
+
+        function sendWhatsAppMessage() {
+            var cartItems = document.getElementById("cartItems").getElementsByTagName("li");
+            var totalPrice = document.getElementById("totalPrice").textContent;
+            var message = "Pedido via WhatsApp:\n";
+            for (var i = 0; i < cartItems.length; i++) {
+                message += cartItems[i].textContent + "\n";
+            }
+            message += "\nTotal: " + totalPrice;
+            var phoneNumber = "5516981313200"; // Número de WhatsApp
+            var whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+            window.open(whatsappURL, "_blank");
+        }
+
+        function updateTotalPrice() {
+            var cartItems = document.getElementById("cartItems").getElementsByTagName("li");
+            var totalPrice = 0;
+            for (var i = 0; i < cartItems.length; i++) {
+                var itemPrice = parseFloat(cartItems[i].textContent.split("R$ ")[1]);
+                totalPrice += itemPrice;
+            }
+            if (cartItems.length > 10) {
+                totalPrice *= 0.9; // Aplica um desconto de 10% se houver mais de 10 produtos
+            }
+            document.getElementById("totalPrice").textContent = "Total: R$ " + totalPrice.toFixed(2);
+        }
+
+        // Funções para o sidebar
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+    </script>
 </body>
 </html>
