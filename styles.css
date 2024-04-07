@@ -1,55 +1,202 @@
-/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #0B0C10; /* Azul marinho */
+    color: #fff;
 }
 
 header {
-    background-color: #000;
-    color: #fff;
-    padding: 20px;
-}
-
-nav ul {
-    list-style-type: none;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-section {
+    background-color: #1F2833; /* Azul marinho mais escuro */
     padding: 20px;
     text-align: center;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.product {
+    border: 1px solid #45A29E; /* Turquesa escuro */
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    background-color: #1F2833; /* Azul marinho mais escuro */
 }
 
 footer {
-    background-color: #000;
-    color: #fff;
-    padding: 10px 20px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    background-color: #1F2833; /* Azul marinho mais escuro */
+    padding: 10px;
     text-align: center;
 }
 
-/* Estilos específicos */
-.btn {
-    display: inline-block;
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 20px;
+.news {
+    background-color: #0B0C10; /* Azul marinho mais escuro */
+    padding: 20px;
+    text-align: center;
 }
-body {
-    background-color: #3498db; /* Azul */
+
+.cart {
+    border: 1px solid #45A29E; /* Turquesa escuro */
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #1F2833; /* Azul marinho mais escuro */
+    z-index: 999;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px; /* Largura máxima do carrinho */
+    width: 100%;
+}
+
+.cart-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #45A29E; /* Turquesa escuro */
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.cart-icon:hover {
+    background-color: #66FCF1; /* Turquesa mais clara */
+}
+
+.cart-items {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.cart-items li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #45A29E; /* Turquesa escuro */
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item-name {
+    flex-grow: 1;
+}
+
+.send-button {
+    background-color: #45A29E; /* Turquesa escuro */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+.send-button:hover {
+    background-color: #66FCF1; /* Turquesa mais clara */
+}
+
+.close-button {
+    background-color: #F25F5C; /* Vermelho coral */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+.close-button:hover {
+    background-color: #FF7A70; /* Vermelho coral mais claro */
+}
+
+/* Estilos para o botão Abrir */
+.open-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+/* Estilos para a barra lateral */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: #1F2833; /* Azul marinho mais escuro */
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar ul {
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar ul li {
+    padding: 8px 8px;
+    text-decoration: none;
+    font-size: 22px;
+    color: #66FCF1; /* Turquesa mais clara */
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar ul li:hover {
+    color: #fff;
+    background-color: #45A29E; /* Turquesa escuro */
+}
+
+.sidebar .close-btn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: #66FCF1; /* Turquesa mais clara */
+}
+
+.sidebar .close-btn:hover {
+    color: #fff;
+}
+
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
 }
