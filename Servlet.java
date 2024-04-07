@@ -1,19 +1,37 @@
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+function addToCart(productName, price) {
+    Swal.fire({
+        title: 'Produto adicionado ao carrinho!',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+    });
+    var cartItems = document.getElementById("cartItems");
+    var listItem = document.createElement("li");
+    listItem.textContent = productName + " - Preço: R$ " + price;
+    cartItems.appendChild(listItem);
 
-@WebServlet("/ExemploServlet")
-public class ExemploServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Aqui você pode adicionar o código para lidar com solicitações GET, se necessário
-        // Por exemplo, você pode processar dados recebidos do cliente ou acessar um banco de dados
-    }
+    // Atualizar o preço total
+    updateTotalPrice();
+}
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Aqui você pode adicionar o código para lidar com solicitações POST, se necessário
-        // Por exemplo, você pode processar dados de um formulário HTML enviado pelo cliente
+function toggleCart() {
+    var cart = document.getElementById("cart");
+    cart.style.display = cart.style.display === "block" ? "none" : "block";
+}
+
+function sendWhatsAppMessage() {
+    var cartItems = document.getElementById("cartItems").getElementsByTagName("li");
+    var totalPrice = document.getElementById("totalPrice").textContent;
+    var message = "Pedido via WhatsApp:\n";
+    for (var i = 0; i < cartItems.length; i++) {
+        message += cartItems[i].textContent + "\n";
     }
+    message += "\nTotal: " + totalPrice;
+
+    // Corrigir o formato do número de telefone para o Brasil
+    var phoneNumber = "+5516981313200"; // Substitua pelo número de telefone correto
+
+    // Criar o URL do WhatsApp com o número de telefone e a mensagem
+    var whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+    window.open(whatsappURL, "_blank");
 }
